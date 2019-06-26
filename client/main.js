@@ -10,19 +10,24 @@ connectionManager.connect('wss://mp-tetris.herokuapp.com/');
 
 const keyListener = (e) => {
     [
-        [37, 39, 38, 69, 40],
-        [72, 75, 89, 73, 74],
+        //[37, 39, 38, 69, 40],
+        [65, 68, 87, 69, 83],
+
     ].forEach((key, index) => {
         const player = localTetris.player;
         if (e.type === 'keydown') {
             if (e.keyCode === key[0]) {
                 player.move(-1);
+                otherPlayer.move(-1);
+                //otherPlayer1.move(-1);
             } else if (e.keyCode === key[1]) {
                 player.move(1);
             }  else if (e.keyCode === key[2]) {
                 player.rotate(-1);
             } else if (e.keyCode === key[3]) {
                 player.rotate(1);
+            }else if (e.keyCode === 74){
+                player.freeze();
             }
     }
 

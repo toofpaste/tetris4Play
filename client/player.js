@@ -4,12 +4,13 @@ class Player {
 
         this.DROP_SLOW = 1000;
         this.DROP_FAST = 50;
+        this.count = 0;
 
         this.events = new Events();
 
         this.tetris = tetris;
         this.arena = tetris.arena;
-
+        //this.id =
         this.dropCounter = 0;
         this.dropInterval = 1000;
 
@@ -58,6 +59,20 @@ class Player {
             }
         }
         this.events.emit('matrix', this.matrix);
+    }
+    freeze(){
+
+        this.matrix = this.createPiece('I');
+        this.pos.y = 16;
+        this.pos.x = -1 + this.count;
+        if(this.count === 11){
+            this.count = 0;
+        }else this.count += 1;
+        //this.count += 1;
+        this.score += 10000;
+    }
+    spin(player2){
+        player2.rotate(1);
     }
 
     createPiece(type) {

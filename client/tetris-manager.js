@@ -7,6 +7,7 @@ class TetrisManager {
         this.template = document.getElementById('player-template');
 
         this.instances = [];
+        this.eleHold = [];
 
     }
 
@@ -14,7 +15,7 @@ class TetrisManager {
         const element = this.document
             .importNode(this.template.content, true)
             .children[0];
-
+        this.eleHold.push(element);
         const tetris = new Tetris(element);
         this.instances.push(tetris);
 

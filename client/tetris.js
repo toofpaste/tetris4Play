@@ -16,6 +16,7 @@ class Tetris {
 
 
 
+
         this.colors = [
             null,
             '#FF0D72',
@@ -49,6 +50,17 @@ class Tetris {
 
         this.drawMatrix(this.arena.matrix, {x: 0, y: 0});
         this.drawMatrix(this.player.matrix, this.player.pos);
+    }
+    randomColor() {
+        var h = Math.round(Math.random() * 360);
+        var color = "hsl(" + h + ", 50%, 80%)";
+        // hsl(360, 100%, 100%);
+        return color;
+    };
+    brokeMode(tf){
+        this.context.fillStyle = this.randomColor();
+        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
     }
 
     drawMatrix(matrix, offset) {

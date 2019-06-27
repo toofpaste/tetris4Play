@@ -5,7 +5,7 @@ class Player {
         this.DROP_SLOW = 1000;
         this.DROP_FAST = 50;
         this.count = 0;
-
+        this.brookeMode = false;
         this.events = new Events();
 
         this.tetris = tetris;
@@ -28,6 +28,10 @@ class Player {
             return;
         }
         this.events.emit('pos', this.pos);
+    }
+    bMode(tf){
+        this.brookeMode = true;
+        this.tetris.brokeMode(this.brookeMode);
     }
 
     reset() {
@@ -71,9 +75,7 @@ class Player {
         //this.count += 1;
         this.score += 10000;
     }
-    spin(player2){
-        player2.rotate(1);
-    }
+
 
     createPiece(type) {
         if (type === 'T') {
@@ -158,6 +160,7 @@ class Player {
     }
 
     update(deltaTime) {
+        this.bMode(this.brookeMode);
         this.dropCounter += deltaTime;
         if(this.dropCounter > this.dropInterval) {
             this.drop();

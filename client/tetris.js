@@ -4,6 +4,7 @@ class Tetris {
 
         this.element = element;
         this.canvas = element.querySelector('canvas');
+
         this.context = this.canvas.getContext('2d');
         this.context.scale(20, 20);
 
@@ -16,19 +17,31 @@ class Tetris {
 
 
 
+        //
+        // this.colors = [
+        //     null,
+        //     '#A4A4A4',
+        //     '#BDBDBD',
+        //     '#848484',
+        //     '#D8D8D8',
+        //     '#E6E6E6',
+        //     '#F2F2F2',
+        //     '#6E6E6E',
+        // ];
 
         this.colors = [
             null,
-            '#FF0D72',
-            '#0DC2FF',
-            '#0DFF72',
-            '#F538FF',
-            '#FF8E0D',
-            '#FFE138',
-            '#3877FF',
+            '#F5A9A9',
+            '#BCF5A9',
+            '#8181F7',
+            '#F5A9F2',
+            '#F7819F',
+            '#81F7F3',
+            '#F2F5A9',
         ];
 
         let lastTime = 0;
+
         this._update = (time = 0) => {
             const deltaTime = time - lastTime;
             lastTime = time;
@@ -45,8 +58,9 @@ class Tetris {
     }
 
     draw() {
-        this.context.fillStyle = '#000';
+        this.context.fillStyle = '#A4A4A4';
         this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
 
         this.drawMatrix(this.arena.matrix, {x: 0, y: 0});
         this.drawMatrix(this.player.matrix, this.player.pos);
@@ -71,6 +85,7 @@ class Tetris {
                     this.context.fillRect(x + offset.x,
                                      y + offset.y,
                                      1, 1);
+                    //this.context.setAttribute("style", "stroke:#FFFFF");
                 }
             });
         });

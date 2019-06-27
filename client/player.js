@@ -31,12 +31,13 @@ class Player {
     }
 
     reset() {
-        const pieces = 'ILJOTSZ';
+        let pieces = 'TJLOSZI';
         this.matrix = this.createPiece(pieces[pieces.length * Math.random() | 0]);
         this.pos.y = 0;
         this.pos.x = (this.arena.matrix[0].length / 2 | 0) -
-                     (this.matrix[0].length / 2 | 0);
+        (this.matrix[0].length / 2 | 0);
         if (this.arena.collide(this)) {
+            // Game Over
             this.arena.clear();
             this.score = 0;
             this.events.emit('score', this.score);
@@ -76,50 +77,84 @@ class Player {
     }
 
     createPiece(type) {
-        if (type === 'T') {
-            return [
-                [0, 0, 0],
-                [1, 1, 1],
-                [0, 1, 0],
-            ];
-
-        } else if (type === 'O') {
-            return [
-                [2, 2],
-                [2, 2],
-            ];
-        } else if (type === 'L') {
-            return [
-                [0, 3, 0],
-                [0, 3, 0],
-                [0, 3, 3],
-            ];
-        } else if (type === 'J') {
-            return [
-                [0, 4, 0],
-                [0, 4, 0],
-                [4, 4, 0],
-            ];
-        } else if (type === 'I') {
-            return [
-                [0, 5, 0, 0],
-                [0, 5, 0, 0],
-                [0, 5, 0, 0],
-                [0, 5, 0, 0],
-            ];
-        } else if (type === 'S') {
-            return [
-                [0, 6, 6],
-                [6, 6, 0],
-                [0, 0, 0],
-            ];
-        } else if (type === 'Z') {
-            return [
-                [7, 7, 0],
-                [0, 7, 7],
-                [0, 0, 0],
-            ];
-        }
+       if (type === 'I') {
+           return [
+               [0, 1, 0, 0],
+               [0, 1, 0, 0],
+               [0, 1, 0, 0],
+               [0, 1, 0, 0],
+           ];
+       } else if (type === 'L') {
+           return [
+               [0, 2, 0],
+               [0, 2, 0],
+               [0, 2, 2],
+           ];
+       } else if (type === 'J') {
+           return [
+               [0, 3, 0],
+               [0, 3, 0],
+               [3, 3, 0],
+           ];
+       } else if (type === 'O') {
+           return [
+               [4, 4],
+               [4, 4],
+           ];
+       } else if (type === 'Z') {
+           return [
+               [5, 5, 0],
+               [0, 5, 5],
+               [0, 0, 0],
+           ];
+       } else if (type === 'S') {
+           return [
+               [0, 6, 6],
+               [6, 6, 0],
+               [0, 0, 0],
+           ];
+       } else if (type === 'T') {
+           return [
+               [0, 7, 0],
+               [7, 7, 7],
+               [0, 0, 0],
+           ];
+       } else if (type === 'W') {
+           return [
+               [0, 8, 0],
+               [8, 0, 8],
+               [0, 8, 0],
+           ];
+       } else if (type === 'X') {
+           return [
+               [9, 0, 9],
+               [0, 0, 0],
+               [9, 0, 9],
+           ];
+       } else if (type === 'Y') {
+           return [
+               [10, 0, 10],
+               [0, 10, 0],
+               [0, 10, 0],
+           ];
+       } else if (type === 'Q') {
+           return [
+               [11, 11, 0],
+               [0, 0, 0],
+               [0, 11, 11],
+           ];
+       } else if (type === 'E') {
+           return [
+               [0, 12, 12],
+               [0, 0, 0],
+               [0, 12, 12],
+           ];
+       } else if (type === 'K') {
+           return [
+               [0, 13, 13],
+               [0, 0, 0],
+               [13, 13, 0],
+           ];
     }
 
     drop() {

@@ -29,7 +29,8 @@ class Player {
         }
         this.events.emit('pos', this.pos);
     }
-    bMode(tf){
+
+    bMode(tf) {
         this.brookeMode = true;
         this.tetris.brokeMode(this.brookeMode);
     }
@@ -39,7 +40,7 @@ class Player {
         this.matrix = this.createPiece(pieces[pieces.length * Math.random() | 0]);
         this.pos.y = 0;
         this.pos.x = (this.arena.matrix[0].length / 2 | 0) -
-                     (this.matrix[0].length / 2 | 0);
+            (this.matrix[0].length / 2 | 0);
         if (this.arena.collide(this)) {
             this.arena.clear();
             this.score = 0;
@@ -64,14 +65,15 @@ class Player {
         }
         this.events.emit('matrix', this.matrix);
     }
-    freeze(){
+
+    freeze() {
 
         this.matrix = this.createPiece('I');
         this.pos.y = 16;
         this.pos.x = -1 + this.count;
-        if(this.count === 11){
+        if (this.count === 11) {
             this.count = 0;
-        }else this.count += 1;
+        } else this.count += 1;
         //this.count += 1;
         this.score += 10000;
     }
@@ -139,6 +141,218 @@ class Player {
 
     }
 
+    playerSwipeDrop() {
+        this.pos.y++;
+        if (!this.arena.collide(this)) {
+            this.pos.y++;
+            this.pos.y++;
+            if (!this.arena.collide(this)) {
+                this.pos.y++;
+                if (!this.arena.collide(this)) {
+                    this.pos.y++;
+                    if (!this.arena.collide(this)) {
+                        this.pos.y++;
+                        if (!this.arena.collide(this)) {
+                            this.pos.y++;
+                            if (!this.arena.collide(this)) {
+                                this.pos.y++;
+                                if (!this.arena.collide(this)) {
+                                    this.pos.y++;
+                                    if (!this.arena.collide(this)) {
+                                        this.pos.y++;
+                                        if (!this.arena.collide(this)) {
+                                            this.pos.y++;
+                                            if (!this.arena.collide(this)) {
+                                                this.pos.y++;
+                                                if (!this.arena.collide(this)) {
+                                                    this.pos.y++;
+                                                    if (!this.arena.collide(this)) {
+                                                        this.pos.y++;
+                                                        if (!this.arena.collide(this)) {
+                                                            this.pos.y++;
+                                                            if (!this.arena.collide(this)) {
+                                                                this.pos.y++;
+                                                                if (!this.arena.collide(this)) {
+                                                                    this.pos.y++;
+                                                                    if (!this.arena.collide(this)) {
+                                                                        this.pos.y++;
+                                                                        if (!this.arena.collide(this)) {
+                                                                            this.pos.y++;
+                                                                            if (!this.arena.collide(this)) {
+                                                                                this.pos.y++;
+                                                                                if (!this.arena.collide(this)) {
+                                                                                    this.pos.y++;
+                                                                                    if (!this.arena.collide(this)) {
+                                                                                        this.pos.y++;
+                                                                                        if (!this.arena.collide(this)) {
+                                                                                            this.pos.y++;
+                                                                                            if (!this.arena.collide(this)) {
+                                                                                                this.pos.y++;
+                                                                                                if (!this.arena.collide(this)) {
+                                                                                                    this.pos.y++;
+                                                                                                } else {
+                                                                                                    this.pos.y--;
+                                                                                                    this.arena.merge(this);
+                                                                                                    this.reset();
+                                                                                                    this.score += this.arena.sweep();
+                                                                                                    this.events.emit('score', this.score);
+                                                                                                }
+                                                                                            } else {
+                                                                                                this.pos.y--;
+                                                                                                this.arena.merge(this);
+                                                                                                this.reset();
+                                                                                                this.score += this.arena.sweep();
+                                                                                                this.events.emit('score', this.score);
+                                                                                            }
+                                                                                        } else {
+                                                                                            this.pos.y--;
+                                                                                            this.arena.merge(this);
+                                                                                            this.reset();
+                                                                                            this.score += this.arena.sweep();
+                                                                                            this.events.emit('score', this.score);
+                                                                                        }
+                                                                                    } else {
+                                                                                        this.pos.y--;
+                                                                                        this.arena.merge(this);
+                                                                                        this.reset();
+                                                                                        this.score += this.arena.sweep();
+                                                                                        this.events.emit('score', this.score);
+                                                                                    }
+                                                                                } else {
+                                                                                    this.pos.y--;
+                                                                                    this.arena.merge(this);
+                                                                                    this.reset();
+                                                                                    this.score += this.arena.sweep();
+                                                                                    this.events.emit('score', this.score);
+                                                                                }
+                                                                            } else {
+                                                                                this.pos.y--;
+                                                                                this.arena.merge(this);
+                                                                                this.reset();
+                                                                                this.score += this.arena.sweep();
+                                                                                this.events.emit('score', this.score);
+                                                                            }
+                                                                        } else {
+                                                                            this.pos.y--;
+                                                                            this.arena.merge(this);
+                                                                            this.reset();
+                                                                            this.score += this.arena.sweep();
+                                                                            this.events.emit('score', this.score);
+                                                                        }
+                                                                    } else {
+                                                                        this.pos.y--;
+                                                                        this.arena.merge(this);
+                                                                        this.reset();
+                                                                        this.score += this.arena.sweep();
+                                                                        this.events.emit('score', this.score);
+                                                                    }
+                                                                } else {
+                                                                    this.pos.y--;
+                                                                    this.arena.merge(this);
+                                                                    this.reset();
+                                                                    this.score += this.arena.sweep();
+                                                                    this.events.emit('score', this.score);
+                                                                }
+                                                            } else {
+                                                                this.pos.y--;
+                                                                this.arena.merge(this);
+                                                                this.reset();
+                                                                this.score += this.arena.sweep();
+                                                                this.events.emit('score', this.score);
+                                                            }
+                                                        } else {
+                                                            this.pos.y--;
+                                                            this.arena.merge(this);
+                                                            this.reset();
+                                                            this.score += this.arena.sweep();
+                                                            this.events.emit('score', this.score);
+                                                        }
+                                                    } else {
+                                                        this.pos.y--;
+                                                        this.arena.merge(this);
+                                                        this.reset();
+                                                        this.score += this.arena.sweep();
+                                                        this.events.emit('score', this.score);
+                                                    }
+                                                } else {
+                                                    this.pos.y--;
+                                                    this.arena.merge(this);
+                                                    this.reset();
+                                                    this.score += this.arena.sweep();
+                                                    this.events.emit('score', this.score);
+                                                }
+                                            } else {
+                                                this.pos.y--;
+                                                this.arena.merge(this);
+                                                this.reset();
+                                                this.score += this.arena.sweep();
+                                                this.events.emit('score', this.score);
+                                            }
+                                        } else {
+                                            this.pos.y--;
+                                            this.arena.merge(this);
+                                            this.reset();
+                                            this.score += this.arena.sweep();
+                                            this.events.emit('score', this.score);
+                                        }
+                                    } else {
+                                        this.pos.y--;
+                                        this.arena.merge(this);
+                                        this.reset();
+                                        this.score += this.arena.sweep();
+                                        this.events.emit('score', this.score);
+                                    }
+                                } else {
+                                    this.pos.y--;
+                                    this.arena.merge(this);
+                                    this.reset();
+                                    this.score += this.arena.sweep();
+                                    this.events.emit('score', this.score);
+                                }
+                            } else {
+                                this.pos.y--;
+                                this.arena.merge(this);
+                                this.reset();
+                                this.score += this.arena.sweep();
+                                this.events.emit('score', this.score);
+                            }
+                        } else {
+                            this.pos.y--;;
+                        this.arena.merge(this);
+                        this.reset();
+                        this.score += this.arena.sweep();
+                        this.events.emit('score', this.score);
+                        }
+                    } else {
+                    this.pos.y--;
+                    this.arena.merge(this);
+                    this.reset();
+                    this.score += this.arena.sweep();
+                    this.events.emit('score', this.score);
+                    }
+                } else {
+                this.pos.y--;
+                this.arena.merge(this);
+                this.reset();
+                this.score += this.arena.sweep();
+                this.events.emit('score', this.score);
+                }
+            } else {
+            this.pos.y--;
+            this.arena.merge(this);
+            this.reset();
+            this.score += this.arena.sweep();
+            this.events.emit('score', this.score);
+            }
+        } else {
+            this.pos.y--;
+            this.arena.merge(this);
+            this.reset();
+            this.score += this.arena.sweep();
+            this.events.emit('score', this.score);
+        }
+    }
+
     _rotateMatrix(matrix, dir) {
         for (let y = 0; y < this.matrix.length; ++y) {
             for (let x = 0; x < y; ++x) {
@@ -162,7 +376,7 @@ class Player {
     update(deltaTime) {
         this.bMode(this.brookeMode);
         this.dropCounter += deltaTime;
-        if(this.dropCounter > this.dropInterval) {
+        if (this.dropCounter > this.dropInterval) {
             this.drop();
 
         }

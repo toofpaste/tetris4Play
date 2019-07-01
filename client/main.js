@@ -11,7 +11,55 @@ const connectionManager = new ConnectionManager(tetrisManager);
 
 connectionManager.connect('wss://mp-tetris.herokuapp.com/');
 
+document.addEventListener('touchstart', handleTouchStart, false);
+document.addEventListener('touchmove', handleTouchMove, false);
+var xDown = null;
+var yDown = null;
+function getTouches(evt) {
+    return evt.touches ||             // browser API
+        evt.originalEvent.touches; // jQuery
+}
+function handleTouchStart(evt) {
+    const firstTouch = getTouches(evt)[0];
+    xDown = firstTouch.clientX;
+    yDown = firstTouch.clientY;
 
+}
+function handleTouchMove(evt) {
+    const player = localTetris.player;
+    if (!xDown || !yDown) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+    // console.log("-------------------------------------------");
+    // console.log(xUp);
+    // console.log(yUp);
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
+        if (xDiff > 0) {
+            player.move(-1);
+            /* left swipe */
+        } else {
+            player.move(1);
+            /* right swipe */
+        }
+    } else {
+        if (yDiff > 0) {
+            player.rotate(1);
+            /* up swipe */
+        } else {
+            player.playerSwipeDrop();
+            /* down swipe */
+        }
+    }
+    /* reset values */
+    xDown = null;
+    yDown = null;
+}
 const keyListener = (e) => {
     [
         //[37, 39, 38, 69, 40],
